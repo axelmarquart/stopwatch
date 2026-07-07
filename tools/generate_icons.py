@@ -13,7 +13,7 @@ import os
 from PIL import Image, ImageDraw
 
 # Muss zu manifest.json / style.css theme_color passen.
-BACKGROUND_COLOR = (79, 70, 229)   # Indigo
+BACKGROUND_COLOR = (255, 105, 180)   # Pink
 FOREGROUND_COLOR = (255, 255, 255)
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
