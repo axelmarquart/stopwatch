@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stoppuhr</title>
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app">
+    <h1 class="app-title">Stoppuhr</h1>
+
+    <!-- Stoppuhr-Anzeige und Steuerung -->
+    <section class="stopwatch-card" aria-label="Stoppuhr">
+      <div class="time-display" id="timeDisplay" aria-live="polite">00:00.0</div>
+
+      <div class="controls" id="runControls">
+        <button type="button" id="startBtn" class="btn btn-start">Start</button>
+        <button type="button" id="pauseResumeBtn" class="btn btn-pause" hidden>Pause</button>
+        <button type="button" id="stopBtn" class="btn btn-stop" hidden>Stopp</button>
+      </div>
+
+      <!-- Erscheint erst im State "stopped" -->
+      <form id="saveForm" class="save-form" hidden>
+        <p class="save-form-time">Gemessene Zeit: <strong id="finalTimeText">00:00.0</strong></p>
+        <label for="commentInput" class="field-label">Kommentar (optional)</label>
+        <textarea id="commentInput" rows="2" placeholder="z. B. Notiz zum Lauf..."></textarea>
+        <div class="controls">
+          <button type="submit" id="saveEntryBtn" class="btn btn-start">Speichern</button>
+          <button type="button" id="discardEntryBtn" class="btn btn-stop">Verwerfen</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Liste der letzten 10 Einträge -->
+    <section class="entries-card" aria-label="Letzte Einträge">
+      <h2 class="section-title">Letzte Einträge</h2>
+      <ul id="entriesList" class="entries-list"></ul>
+      <p id="entriesEmptyHint" class="empty-hint">Noch keine gespeicherten Zeiten.</p>
+    </section>
+
+    <!-- Chart: gleitender Durchschnitt -->
+    <section class="chart-card" aria-label="Gleitender Durchschnitt">
+      <h2 class="section-title">Gleitender Durchschnitt</h2>
+      <div class="slider-row">
+        <label for="windowSlider" class="field-label">Fenstergröße: <span id="windowSizeLabel">5</span></label>
+        <input type="range" id="windowSlider" min="1" max="10" step="1" value="5">
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="averageChart"></canvas>
+      </div>
+      <p id="chartEmptyHint" class="empty-hint">Noch keine Daten für das Diagramm.</p>
+    </section>
+
+    <!-- Export / Import -->
+    <section class="backup-card" aria-label="Sicherung">
+      <h2 class="section-title">Sicherung</h2>
+      <div class="controls">
+        <button type="button" id="exportBtn" class="btn btn-secondary">Exportieren</button>
+        <button type="button" id="importBtn" class="btn btn-secondary">Importieren</button>
+        <input type="file" id="importFileInput" accept=".json,application/json" hidden>
+      </div>
+      <p class="empty-hint">
+        Die Daten liegen nur in diesem Browser auf diesem Gerät. Der Export ist die einzige echte Sicherung.
+      </p>
+    </section>
+  </main>
+
+  <!-- Bestätigungsdialog: Löschen -->
+  <dialog id="confirmDialog">
+    <p id="confirmDialogText">Eintrag wirklich löschen?</p>
+    <div class="controls">
+      <button type="button" id="confirmDialogOkBtn" class="btn btn-stop">Löschen</button>
+      <button type="button" id="confirmDialogCancelBtn" class="btn btn-secondary">Abbrechen</button>
+    </div>
+  </dialog>
+
+  <!-- Import-Dialog: Ersetzen / Zusammenführen / Abbrechen -->
+  <dialog id="importDialog">
+    <p>Wie sollen die importierten Daten übernommen werden?</p>
+    <div class="controls controls-stacked">
+      <button type="button" id="importMergeBtn" class="btn btn-start">Zusammenführen</button>
+      <button type="button" id="importReplaceBtn" class="btn btn-stop">Ersetzen</button>
+      <button type="button" id="importCancelBtn" class="btn btn-secondary">Abbrechen</button>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

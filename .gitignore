@@ -1,0 +1,33 @@
+# --- Betriebssystem ---
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+# macOS (falls mal ein anderes Gerät dazukommt)
+.DS_Store
+.AppleDouble
+
+# --- Editoren / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Logs & temporäre Dateien ---
+*.log
+*.tmp
+
+# --- Umgebungs-/Geheimnisdateien (vorsichtshalber) ---
+.env
+.env.*
+
+# --- Node (nur relevant, falls du später doch Tooling ergänzt) ---
+node_modules/
+npm-debug.log*
+
+# --- Python (falls du lokale Hilfsskripte ablegst) ---
+__pycache__/
+*.pyc

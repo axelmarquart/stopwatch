@@ -1,0 +1,269 @@
+/* Farben passend zu manifest.json (theme_color / background_color) */
+:root {
+  --color-bg: #111827;
+  --color-surface: #1f2937;
+  --color-border: #374151;
+  --color-text: #f9fafb;
+  --color-text-muted: #9ca3af;
+  --color-primary: #4f46e5;
+  --color-start: #22c55e;
+  --color-pause: #f59e0b;
+  --color-stop: #ef4444;
+  --color-secondary: #374151;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* [hidden] muss auch Elemente mit eigenem display:-Wert (z. B. .save-form)
+   zuverlaessig ausblenden. */
+[hidden] {
+  display: none !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem;
+  padding-bottom: 3rem;
+}
+
+.app-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0.5rem 0 0;
+}
+
+.section-title {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stopwatch-card,
+.entries-card,
+.chart-card,
+.backup-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+/* Grosse, gut lesbare Stoppuhr-Anzeige mit tabellarischen Ziffern gegen "Wackeln" beim Ticken */
+.time-display {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.controls-stacked {
+  flex-direction: column;
+}
+
+/* Mindesthoehe ~44px fuer gut bedienbare Touch-Flaechen */
+.btn {
+  flex: 1 1 auto;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-start {
+  background: var(--color-start);
+}
+
+.btn-pause {
+  background: var(--color-pause);
+}
+
+.btn-stop {
+  background: var(--color-stop);
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+}
+
+.save-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+}
+
+.save-form-time {
+  margin: 0;
+}
+
+.field-label {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+textarea,
+input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.entries-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.entry-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.entry-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.entry-duration {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.entry-timestamp {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.entry-comment {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.entry-comment:focus {
+  border-color: var(--color-border);
+  background: var(--color-surface);
+}
+
+.entry-delete-btn {
+  flex: 0 0 auto;
+  min-width: 44px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-secondary);
+  color: var(--color-text);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.empty-hint {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0;
+}
+
+.slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Vergroesserter Slider-Daumen fuer bessere Touch-Bedienung */
+input[type="range"] {
+  width: 100%;
+  height: 44px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: none;
+}
+
+/* Feste Hoehe notwendig, damit Chart.js mit maintainAspectRatio:false
+   responsiv auf schmaler Handy-Breite funktioniert. */
+.chart-wrapper {
+  position: relative;
+  height: 260px;
+}
+
+dialog {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 1.25rem;
+  max-width: 90vw;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
