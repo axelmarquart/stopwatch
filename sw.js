@@ -4,7 +4,7 @@
 
 // Version bei jeder Aenderung der gecachten Dateien erhoehen, damit alte
 // Caches beim naechsten activate-Event aufgeraeumt werden.
-const CACHE_NAME = 'stopwatch-static-v1';
+const CACHE_NAME = 'stopwatch-static-v2';
 
 const PRECACHE_URLS = [
   './',
